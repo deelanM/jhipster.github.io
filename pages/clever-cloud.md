@@ -33,6 +33,23 @@ Login successful as ...
 
 2. Add a database addon to your application `clever addon create [addon provider] [your addon name] --link [your application name]`
 
+<<<<<<< HEAD
+
+    List supported addon providers `clever addon providers`
+    <pre>
+    cellar-addon      Cellar S3 storage       S3-like online file storage web service
+    config-provider   Configuration provider  Expose configuration to your applications  (via environment variables)
+    es-addon          Elastic Stack           Elasticsearch with Kibana and APM server as options
+    fs-bucket         FS Buckets              Persistent file system for your application
+    mongodb-addon     MongoDB                 A noSQL document-oriented database
+    mysql-addon       MySQL                   An open source relational database management system
+    postgresql-addon  PostgreSQL              A powerful, open source object-relational database system
+    redis-addon       Redis                   Redis by Clever Cloud is an in-memory key-value data store, powered by Clever Cloud
+    </pre>
+
+    [see supported addons](https://www.clever-cloud.com/doc/addons/clever-cloud-addons/#available-add-ons)
+=======
+>>>>>>> fix clevercloud documentation mistakes
 
     List supported addon providers `clever addon providers`
     <pre>
@@ -48,7 +65,7 @@ Login successful as ...
 
     [see supported addons](https://www.clever-cloud.com/doc/addons/clever-cloud-addons/#available-add-ons)
 
-3. Optionnal, setup env var `clever env set [your env var name] [value]`
+3. Setup env var `clever env set CC_PRE_RUN_HOOK "cp ./clevercloud/application-clevercloud.yml ./application-prod.yml"`
 
 4. Enable dedicated build `clever scale --build-flavor M`
 
@@ -69,7 +86,7 @@ Login successful as ...
         maximumPoolSize: 2
     </pre>
 
-3. create `clevercloud/maven.json` file
+3. create `clevercloud/maven.json` file and using your pom.xml artifactId
     <pre>
     {
       "build": {
@@ -77,7 +94,7 @@ Login successful as ...
         "goal": "-Pprod package -DskipTests"
       },
       "deploy": {
-      "jarName": "./target/jhipster-0.0.0-SNAPSHOT.jar"
+      "jarName": "./target/[artifactId]-0.0.1-SNAPSHOT.jar"
       }
     }
     </pre>
