@@ -62,11 +62,15 @@ Login successful as ...
 
     For PostgreSQL
     <pre>
-    url: jdbc:postgresql://${POSTGRESQL_ADDON_HOST}:${POSTGRESQL_ADDON_PORT}/${POSTGRESQL_ADDON_DB}?useUnicode=true&characterEncoding=utf8&useSSL=false
-      username: ${POSTGRESQL_ADDON_USER}
-      password: ${POSTGRESQL_ADDON_PASSWORD}
-      hikari:
-        maximumPoolSize: 2
+spring:
+    datasource:
+        type: com.zaxxer.hikari.HikariDataSource        
+        url: jdbc:postgresql://${POSTGRESQL_ADDON_HOST}:${POSTGRESQL_ADDON_PORT}/${POSTGRESQL_ADDON_DB}?useUnicode=true&characterEncoding=utf8&useSSL=false
+        username: ${POSTGRESQL_ADDON_USER}
+        password: ${POSTGRESQL_ADDON_PASSWORD}
+        hikari:
+            maximumPoolSize: 2
+
     </pre>
 
 3. create `clevercloud/maven.json` file and using your pom.xml artifactId
