@@ -33,7 +33,6 @@ Login successful as ...
 
 2. Add a database addon to your application `clever addon create [addon provider] [your addon name] --link [your application name]`
 
-
     List supported addon providers `clever addon providers`
     <pre>
     cellar-addon      Cellar S3 storage       S3-like online file storage web service
@@ -70,7 +69,6 @@ spring:
         password: ${POSTGRESQL_ADDON_PASSWORD}
         hikari:
             maximumPoolSize: 2
-
     </pre>
 
 3. create `clevercloud/maven.json` file and using your pom.xml artifactId
