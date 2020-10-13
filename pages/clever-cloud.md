@@ -61,15 +61,38 @@ Login successful as ...
 
     For PostgreSQL
     <pre>
-spring:
-    datasource:
-        type: com.zaxxer.hikari.HikariDataSource        
-        url: jdbc:postgresql://${POSTGRESQL_ADDON_HOST}:${POSTGRESQL_ADDON_PORT}/${POSTGRESQL_ADDON_DB}?useUnicode=true&characterEncoding=utf8&useSSL=false
-        username: ${POSTGRESQL_ADDON_USER}
-        password: ${POSTGRESQL_ADDON_PASSWORD}
-        hikari:
-            maximumPoolSize: 2
+    spring:
+        datasource:
+            type: com.zaxxer.hikari.HikariDataSource        
+            url: jdbc:postgresql://${POSTGRESQL_ADDON_HOST}:${POSTGRESQL_ADDON_PORT}/${POSTGRESQL_ADDON_DB}?useUnicode=true&characterEncoding=utf8&useSSL=false
+            username: ${POSTGRESQL_ADDON_USER}
+            password: ${POSTGRESQL_ADDON_PASSWORD}
+            hikari:
+                maximumPoolSize: 2
     </pre>
+
+    For MySQL
+    <pre>
+    spring:
+        datasource:
+            type: com.zaxxer.hikari.HikariDataSource        
+            url: jdbc:mysql://${MYSQL_ADDON_HOST}:${MYSQL_ADDON_PORT}/${MYSQL_ADDON_DB}?useUnicode=true&characterEncoding=utf8&useSSL=false
+            username: ${MYSQL_ADDON_USER}
+            password: ${MYSQL_ADDON_PASSWORD}
+            hikari:
+                maximumPoolSize: 2
+    </pre>
+
+    For MongoDB
+    <pre>
+    spring:
+      data:
+        mongodb:
+          uri: ${MONGODB_ADDON_URI}
+          database: ${MONGODB_ADDON_DB}
+    </pre>
+
+
 
 3. create `clevercloud/maven.json` file and using your pom.xml artifactId
     <pre>
@@ -85,6 +108,7 @@ spring:
     </pre>
 
 ## Deploy your application
+### Using CLI
 You must commit before deploy
 
 `git commit -m "Clever deploy`
@@ -93,12 +117,37 @@ then run :
 
 `clever deploy`
 
+### Using gitlab CI
+
+define `$CLEVER_TOKEN` and `CLEVER_SECRET` to gitlab CI/CD environment variables
+add this stage to your `.gitlab-ci.yml`
+<pre>
+deploy-to-clever-env:
+  stage: deploy
+  variables:
+    APP_NAME: [clever cloud app name]
+    APP_ID: [clever cloud app id]
+  script:
+    - wget https://clever-tools.cellar.services.clever-cloud.com/releases/latest/clever-tools-latest_linux.tar.gz
+    - tar xvzf clever-tools-latest_linux.tar.gz
+    - ./clever-tools-latest_linux/clever login --token $CLEVER_TOKEN --secret $CLEVER_SECRET
+    - ./clever-tools-latest_linux/clever link ${APP_ID}
+    - ./clever-tools-latest_linux/clever deploy -a ${APP_NAME}
+  environment:
+    name: [env name]
+    url: https://${APP_NAME}.cleverapps.io
+</pre>
+
 ## Changing the Java version
 
 You can select the Java version (Java 11 by default)
 ```
 clever env set CC_JAVA_VERSION 14
 ```
+
+## Using gitlab.ci
+
+
 
 ## More information
 
