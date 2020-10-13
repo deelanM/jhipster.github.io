@@ -94,16 +94,35 @@ Login successful as ...
 
 
 
-3. create `clevercloud/maven.json` file and using your pom.xml artifactId
+3. add json file
+
+    For maven
+    create `clevercloud/maven.json` file and using your pom.xml artifactId
+    
     <pre>
     {
-      "build": {
-        "type": "maven",
-        "goal": "-Pprod package -DskipTests"
-      },
-      "deploy": {
-      "jarName": "./target/[artifactId]-0.0.1-SNAPSHOT.jar"
-      }
+        "build": {
+            "type": "maven",
+            "goal": "-Pprod package -DskipTests"
+        },
+        "deploy": {
+        "jarName": "./target/[artifactId]-0.0.1-SNAPSHOT.jar"
+        }
+    }
+    </pre>
+
+    For gradle
+    create `clevercloud/gradle.json` file 
+
+    <pre>
+    {
+        "build": {
+            "type": "gradle",
+            "goal": "-Pprod bootJar -x test"
+        },
+        "deploy": {
+            "jarName": "./build/libs/[rootProject.name]-0.0.1-SNAPSHOT.jar"
+        }
     }
     </pre>
 
@@ -120,6 +139,7 @@ then run :
 ### Using gitlab CI
 
 define `$CLEVER_TOKEN` and `CLEVER_SECRET` to gitlab CI/CD environment variables
+
 add this stage to your `.gitlab-ci.yml`
 <pre>
 deploy-to-clever-env:
@@ -142,12 +162,8 @@ deploy-to-clever-env:
 
 You can select the Java version (Java 11 by default)
 ```
-clever env set CC_JAVA_VERSION 14
+clever env set CC_JAVA_VERSION 12
 ```
-
-## Using gitlab.ci
-
-
 
 ## More information
 
