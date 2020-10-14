@@ -94,7 +94,7 @@ Login successful as ...
 
 
 
-3. add json file
+3. add a json file that contain the goal field to indicate how to start your application
 
     For maven
     create `clevercloud/maven.json` file and using your pom.xml artifactId
