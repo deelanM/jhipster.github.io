@@ -10,18 +10,16 @@ sitemap:
 ---
 
 # Deploying to Clever Cloud
+[Clever cloud](https://www.clever-cloud.com/){:target="_blank" rel="noopener"} is an IT Automation platform
 
-You can deploy your JHipster application to [Clever cloud](https://www.clever-cloud.com/){:target="_blank" rel="noopener"}.
-
-[![]({{ site.url }}/images/logo/logo_clever_cloud.png)](https://www.clever-cloud.com/){:target="_blank" rel="noopener"}
+[<img src="{{ site.url }}/images/logo/logo_clever_cloud.png" alt="Clever cloud logo" width="300px" />](https://www.clever-cloud.com/){:target="_blank" rel="noopener"}
 
 ## Before you start
 
 You must install the [Clever cloud CLI](https://www.clever-cloud.com/doc/clever-tools/getting_started/){:target="_blank" rel="noopener"}.
 
-You must also [create a Clever Cloud account](https://api.clever-cloud.com/v2/sessions/signup){:target="_blank" rel="noopener"} and log in with the CLI by running the following command:
-
-<pre>$ clever login
+You must also [create a Clever Cloud account](https://api.clever-cloud.com/v2/sessions/signup){:target="_blank" rel="noopener"} and log in with the CLI by running the following command `clever login`
+<pre>
 Opening https://console.clever-cloud.com/cli-oauth?cli_version=2.7.1&cli_token=XXX in your browser to log you in…
 Login successful as ...
 </pre>
@@ -54,7 +52,7 @@ Login successful as ...
     [see dedicated build](https://www.clever-cloud.com/doc/admin-console/apps-management/#dedicated-build)
 
 
-## Configure your jhipster application
+## Configure your JHipster application
 1. Add a `clevercloud/` folder in base directory
 
 2. create `clevercloud/application-clevercloud.yml` for using predefined clever cloud addon env var
@@ -97,7 +95,7 @@ Login successful as ...
 3. add a json file that contain the goal field to indicate how to start your application
 
     For maven
-    create `clevercloud/maven.json` file and using your pom.xml artifactId
+    create `clevercloud/maven.json` file and using your pom.xml **artifactId**
     
     <pre>
     {
@@ -106,7 +104,7 @@ Login successful as ...
             "goal": "-Pprod package -DskipTests"
         },
         "deploy": {
-        "jarName": "./target/[artifactId]-0.0.1-SNAPSHOT.jar"
+        "jarName": "./target/[REPLACE BY ARTIFACTID]-0.0.1-SNAPSHOT.jar"
         }
     }
     </pre>
@@ -169,4 +167,4 @@ clever env set CC_JAVA_VERSION 12
 
 *   [Clever Cloud documentation](https://www.clever-cloud.com/doc/)
 *   [Clever Cloud Java maven deployment](https://www.clever-cloud.com/doc/java/java-maven/)
-*   [Clever Cloud Java maven deployment](https://www.clever-cloud.com/doc/java/java-gradle/)
+*   [Clever Cloud Java gradle deployment](https://www.clever-cloud.com/doc/java/java-gradle/)
